@@ -888,7 +888,6 @@ function factory ($parse) {
         if ($attributes.ccFormat != null) {
           ngModel.$formatters.unshift(card.format)
           $element.on('input', function formatInput () {
-              debugger;
             var input = $element.val()
             var previous = $viewValue()
             if (!input) return
