@@ -837,8 +837,8 @@ var partial = _dereq_('ap').partial
 
 module.exports = factory
 
-factory.$inject = ['$parse']
-function factory ($parse) {
+factory.$inject = ['$parse', '$timeout']
+function factory ($parse, $timeout) {
   return {
     restrict: 'A',
     require: ['ngModel', 'ccNumber'],
@@ -856,6 +856,14 @@ function factory ($parse) {
 
         $scope.$watch($attributes.ngModel, function (number) {
           ngModel.$ccType = ccNumber.type = card.type(number)
+        })
+		
+		$element.on('click input paste keyup', function($event) {
+              $timeout(function() {
+                  $event.target.selectionStart = $event.target.value.length;
+                  $event.target.selectionEnd = $event.target.value.length;
+                  $scope.$apply();
+              }, 100);
         })
 
         function $viewValue () {
