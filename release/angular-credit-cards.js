@@ -183,7 +183,7 @@ exports.unionPay = new Type('UnionPay', {
 
 exports.vegas = new Type('VegasCard', {
   pattern: /^(6048402\d{9})|(606320\d{10})$/,
-  eagerPattern: /^6/,
+  eagerPattern: /^6048402|606320/,
   groupPattern: group19
 })
 
